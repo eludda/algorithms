@@ -1,14 +1,12 @@
-int binary_search(List<int> sorted, target) {
-  var (left, right) = (0, sorted.length - 1);
+int binarySearch(List<Comparable> sorted, Comparable target) {
+  int left = 0, right = sorted.length - 1;
 
   while (left <= right) {
-    final mid = (left + (right - left) / 2).toInt();
+    int mid = left + (right - left) ~/ 2;
+    int cmp = sorted[mid].compareTo(target);
 
-    if (sorted[mid] == target) {
-      return mid;
-    }
-
-    if (sorted[mid] > target) {
+    if (cmp == 0) return mid;
+    if (cmp > 0) {
       right = mid - 1;
     } else {
       left = mid + 1;
@@ -16,8 +14,4 @@ int binary_search(List<int> sorted, target) {
   }
 
   return -1;
-}
-
-void main() {
-  binary_search([1, 3, 6, 13, 16], 6);
 }
